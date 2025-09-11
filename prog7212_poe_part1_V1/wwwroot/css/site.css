@@ -103,6 +103,28 @@ body {
 body {
     padding-top: 70px; /* Adjust based on your navbar height */
 }
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('/images/park.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.login-card {
+    background-color: #ffffff; /* solid white */
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* subtle shadow */
+    max-width: 400px;
+    width: 100%;
+    color: #000; /* text color */
+    border: 1px solid #ddd; /* optional light border */
+}
+
+
+
+
 
 
 
