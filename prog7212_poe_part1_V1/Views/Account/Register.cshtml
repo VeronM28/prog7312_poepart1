@@ -5,41 +5,40 @@
 }
 
 <div class="login-page">
-    <!-- reuse the same container style as login -->
-    <div class="login-card">
-        <!-- same card style -->
-        <h2 class="mb-4 text-center">Create an Account</h2>
+    <div class="login-card register-card">
+        <h2 class="mb-4 text-center fw-bold">Create an Account</h2>
 
         <form asp-action="Register" method="post">
             <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
             <div class="mb-3">
                 <label asp-for="FullName" class="form-label"></label>
-                <input asp-for="FullName" class="form-control" />
+                <input asp-for="FullName" class="form-control" placeholder="Enter your full name" />
                 <span asp-validation-for="FullName" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
                 <label asp-for="Email" class="form-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control" placeholder="name@example.com" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
                 <label asp-for="Password" class="form-label"></label>
-                <input asp-for="Password" type="password" class="form-control" />
+                <input asp-for="Password" type="password" class="form-control" placeholder="Enter a strong password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
                 <label asp-for="ConfirmPassword" class="form-label"></label>
-                <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Re-enter your password" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Register</button>
+            <button type="submit" class="btn btn-primary w-100 py-2">Register</button>
             <p class="text-center mt-3">
-                Already have an account? <a asp-controller="Account" asp-action="Login">Login here</a>.
+                Already have an account?
+                <a asp-controller="Account" asp-action="Login" class="fw-semibold">Login here</a>.
             </p>
         </form>
     </div>

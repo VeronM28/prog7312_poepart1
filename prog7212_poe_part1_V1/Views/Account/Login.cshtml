@@ -1,30 +1,109 @@
 ﻿@model prog7212_poe_part1_V1.ViewModels.LoginViewModel
 
+<style>
+    /* Body font */
+    body {
+        font-family: 'Inter', sans-serif;
+        background: url('/images/park.jpg') no-repeat center center fixed;
+        background-size: cover;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Card styling */
+    .login-card {
+        background-color: #ffffff;
+        border-radius: 15px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        max-width: 400px;
+        width: 100%;
+        color: #333;
+        text-align: left;
+    }
+
+        /* Form inputs */
+        .login-card input.form-control {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 0.6rem;
+            margin-top: 0.3rem;
+            transition: all 0.3s ease;
+        }
+
+            .login-card input.form-control:focus {
+                border-color: #4CAF50;
+                box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+                outline: none;
+            }
+
+        /* Button styling */
+        .login-card .btn-primary {
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 10px;
+            padding: 0.6rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+            .login-card .btn-primary:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+                transform: translateY(-2px);
+            }
+
+    /* Validation text */
+    .text-danger {
+        font-size: 0.9rem;
+    }
+
+    /* Links */
+    .login-card a {
+        color: #4CAF50;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .login-card a:hover {
+            text-decoration: underline;
+        }
+
+</style>
+
 @{
     ViewData["Title"] = "Login";
 }
 
+<!-- Import Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
 <div class="login-page">
     <div class="login-card">
         <h2 class="text-center mb-4">Login</h2>
+
         <form asp-action="Login" method="post">
             <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
             <div class="mb-3">
-                <label asp-for="Email" class="form-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="Enter your email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <label asp-for="Password" class="form-label"></label>
-                <input asp-for="Password" class="form-control" type="password" />
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Login</button>
+
+            <p class="text-center mt-3">
+                Don't have an account? <a asp-controller="Account" asp-action="Register">Register</a>.
+            </p>
         </form>
     </div>
 </div>
-
-
