@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="~/prog7312_poe_part1_V1.styles.css" asp-append-version="true" />
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     
 
@@ -32,21 +33,24 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
+                                <a class="nav-link dashboard" asp-controller="Dashboard" asp-action="Index">
                                     <i class="bi bi-house"></i> Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Events" asp-action="Index">
+                                <a class="nav-link events" asp-controller="Events" asp-action="Index">
                                     <i class="bi bi-exclamation-triangle"></i> Local Events & Announcements
                                 </a>
                             </li>
-                            
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Report" asp-action="MyReports">
+                                <a class="nav-link reports" asp-controller="Report" asp-action="MyReports">
                                     <i class="bi bi-clipboard-check"></i> My Reports
                                 </a>
                             </li>
+
+                            <!-- Guest buttons -->
+                           
+
                         }
                     </ul>
 
@@ -76,10 +80,10 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                                <a class="nav-link login" asp-controller="Account" asp-action="Login">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                                <a class="nav-link register" asp-controller="Account" asp-action="Register">Register</a>
                             </li>
                         }
                         @if (User.IsInRole("Admin"))
