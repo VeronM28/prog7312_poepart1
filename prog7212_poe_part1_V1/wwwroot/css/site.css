@@ -1,17 +1,17 @@
 /* ---------- Reset & Global Styles ---------- */
 html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
-    font-family: 'Inter', sans-serif; /* Modern font */
+    overflow-x: hidden;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #f8f9fa; /* neutral background for all pages */
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    flex: 1 0 auto;
 }
 
 
@@ -155,7 +155,9 @@ body {
         color: var(--bs-primary) !important;
     }
 .main-content {
-    margin-top: 80px; /* adjust to match your navbar height */
+    margin-top: 80px; /* Adjust this value based on your navbar height */
+    min-height: calc(100vh - 140px); /* Ensures footer stays at bottom */
+    padding-bottom: 60px; /* Prevents footer overlap */
 }
 
 
@@ -170,14 +172,11 @@ body {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 .site-footer {
-    position: fixed; /* stick to bottom of viewport */
-    bottom: 0; /* at the very bottom */
-    left: 0; /* start from left */
-    width: 100%; /* full width */
-    text-align: center; /* center the text */
-    padding: 10px 0; /* some vertical padding */
-    background-color: rgba(255, 255, 255, 0.9); /* optional semi-transparent bg */
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* optional subtle shadow */
-    font-size: 0.9rem; /* smaller footer text */
-    z-index: 1000; /* make sure it stays on top */
+    position: relative; /* Changed from fixed */
+    margin-top: 2rem;
+    padding: 1rem 0;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
