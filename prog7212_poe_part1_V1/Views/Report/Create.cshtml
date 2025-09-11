@@ -1,0 +1,70 @@
+﻿@model prog7212_poe_part1_V1.ViewModels.ReportViewModel
+@{
+    ViewData["Title"] = "Submit Report";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="bi bi-file-earmark-plus"></i> Submit New Report</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" enctype="multipart/form-data" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- Category Selection -->
+                        <div class="mb-3">
+                            <label asp-for="Category" class="form-label"></label>
+                            <select asp-for="Category" asp-items="Model.Categories" class="form-select">
+                            </select>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label"></label>
+                            <textarea asp-for="Description" class="form-control" rows="4"
+                                      placeholder="Please provide detailed description of the issue..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="mb-3">
+                            <label asp-for="Location" class="form-label"></label>
+                            <input asp-for="Location" class="form-control"
+                                   placeholder="Enter specific location or address" />
+                            <span asp-validation-for="Location" class="text-danger"></span>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="mb-3">
+                            <label asp-for="ImageFile" class="form-label"></label>
+                            <input asp-for="ImageFile" class="form-control" type="file"
+                                   accept="image/*" />
+                            <div class="form-text">Optional: Upload an image to help illustrate the issue (Max 5MB)</div>
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+                        </div>
+
+                        <!-- Submit Buttons -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary me-md-2">
+                                <i class="bi bi-arrow-left"></i> Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-lg"></i> Submit Report
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
