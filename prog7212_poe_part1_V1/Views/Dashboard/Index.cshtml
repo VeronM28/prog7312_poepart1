@@ -1,0 +1,234 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .dashboard-container {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem 0;
+        margin-top: 56px; /* Account for fixed navbar */
+    }
+
+    .welcome-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .service-btn {
+        background: linear-gradient(145deg, #ffffff, #f0f0f0);
+        border: none;
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        height: 300px;
+        width: 100%;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .service-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-btn:hover::before {
+            left: 100%;
+        }
+
+        .service-btn:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            color: #333;
+            text-decoration: none;
+        }
+
+        .service-btn.report-btn {
+            background: linear-gradient(145deg, #ff6b6b, #ee5a52);
+            color: white;
+        }
+
+            .service-btn.report-btn:hover {
+                color: white;
+                background: linear-gradient(145deg, #ff5252, #e53935);
+            }
+
+        .service-btn.events-btn {
+            background: linear-gradient(145deg, #4ecdc4, #44a08d);
+            color: white;
+        }
+
+            .service-btn.events-btn:hover {
+                color: white;
+                background: linear-gradient(145deg, #26d0ce, #2eb398);
+            }
+
+        .service-btn.status-btn {
+            background: linear-gradient(145deg, #45b7d1, #2980b9);
+            color: white;
+        }
+
+            .service-btn.status-btn:hover {
+                color: white;
+                background: linear-gradient(145deg, #3498db, #2471a3);
+            }
+
+    .service-icon {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+
+    .service-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .service-description {
+        font-size: 1rem;
+        text-align: center;
+        opacity: 0.9;
+        line-height: 1.4;
+    }
+
+    .welcome-header {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .user-greeting {
+        color: #666;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    @@media (max-width: 768px) {
+        .service-btn
+
+    {
+        height: 200px;
+        padding: 2rem 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .service-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .service-title {
+        font-size: 1.2rem;
+    }
+
+    .service-description {
+        font-size: 0.9rem;
+    }
+
+    }
+</style>
+
+<!-- Main Dashboard -->
+<div class="dashboard-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="welcome-card p-5">
+                    <!-- Welcome Header -->
+                    <h1 class="display-4 welcome-header">
+                        Welcome To The Municipality Portal
+                    </h1>
+                    <p class="user-greeting">
+                        <i class="bi bi-person-check text-primary"></i>
+                        Hello @(ViewBag.UserName ?? User.Identity.Name)! Choose a service below to get started
+                    </p>
+
+                    <!-- Service Buttons -->
+                    <div class="row g-4">
+                        <!-- Report a Problem -->
+                        <div class="col-lg-4 col-md-6">
+                            <a href="/Report/Create" class="service-btn report-btn">
+                                <i class="bi bi-exclamation-triangle service-icon"></i>
+                                <h3 class="service-title">Report a Problem</h3>
+                                <p class="service-description">
+                                    Report issues like potholes, broken streetlights, or other municipal problems
+                                </p>
+                            </a>
+                        </div>
+
+                        <!-- Local Events and Announcements -->
+                        <div class="col-lg-4 col-md-6">
+                            <a href="/Events/Index" class="service-btn events-btn">
+                                <i class="bi bi-calendar-event service-icon"></i>
+                                <h3 class="service-title">Local Events & Announcements</h3>
+                                <p class="service-description">
+                                    Stay updated with local events, community meetings, and important announcements
+                                </p>
+                            </a>
+                        </div>
+
+                        <!-- Service Request Status -->
+                        <div class="col-lg-4 col-md-12">
+                            <a href="/ServiceRequest/Index" class="service-btn status-btn">
+                                <i class="bi bi-clipboard-check service-icon"></i>
+                                <h3 class="service-title">Service Request Status</h3>
+                                <p class="service-description">
+                                    Track the status of your submitted reports and service requests
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats or Additional Info -->
+                    <div class="row mt-5">
+                        <div class="col-md-4 text-center">
+                            <div class="p-3">
+                                <i class="bi bi-clock-history text-primary" style="font-size: 2rem;"></i>
+                                <h5 class="mt-2">Quick Response</h5>
+                                <p class="text-muted">Average response time: 24 hours</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-3">
+                                <i class="bi bi-shield-check text-success" style="font-size: 2rem;"></i>
+                                <h5 class="mt-2">Secure Platform</h5>
+                                <p class="text-muted">Your data is protected and secure</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-3">
+                                <i class="bi bi-people text-info" style="font-size: 2rem;"></i>
+                                <h5 class="mt-2">Community Focused</h5>
+                                <p class="text-muted">Serving our community better</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

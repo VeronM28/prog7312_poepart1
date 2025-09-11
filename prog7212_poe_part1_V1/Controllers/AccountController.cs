@@ -70,7 +70,7 @@ namespace prog7212_poe_part1_V1.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Dashboard");
                 }
 
                 ModelState.AddModelError("", "Invalid login attempt");
@@ -84,7 +84,7 @@ namespace prog7212_poe_part1_V1.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

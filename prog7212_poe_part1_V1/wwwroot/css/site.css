@@ -75,5 +75,34 @@ body {
     padding-bottom: 50px;
 }
 
+.navbar-custom {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+    .nav-link:hover {
+        color: var(--bs-primary) !important;
+    }
+
+.dropdown-item:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    color: var(--bs-primary);
+}
+
+/* Ensure body has padding for fixed navbar */
+body {
+    padding-top: 70px; /* Adjust based on your navbar height */
+}
+
 
 

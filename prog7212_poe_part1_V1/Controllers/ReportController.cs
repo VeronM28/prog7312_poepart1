@@ -64,7 +64,7 @@ namespace prog7212_poe_part1_V1.Controllers
                 await _context.SaveChangesAsync();
 
                 TempData["Success"] = "Report submitted successfully!";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
 
             model.Categories = GetCategoryList();
@@ -126,6 +126,7 @@ namespace prog7212_poe_part1_V1.Controllers
                 return null;
             }
         }
+       
     }
 }
 
