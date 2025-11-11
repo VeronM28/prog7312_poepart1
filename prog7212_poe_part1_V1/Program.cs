@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using prog7212_poe_part1_V1.Data;
 using prog7212_poe_part1_V1.Models;
+using prog7212_poe_part1_V1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,8 @@ builder.Services.Configure<FormOptions>(options =>
 {
     options.MultipartBodyLengthLimit = 5 * 1024 * 1024; // 5MB limit
 });
+
+builder.Services.AddSingleton<EventService>();
 
 builder.Services.AddControllersWithViews();
 

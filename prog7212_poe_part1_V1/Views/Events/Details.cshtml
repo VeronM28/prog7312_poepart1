@@ -1,0 +1,633 @@
+﻿@model prog7212_poe_part1_V1.Models.Event
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<div class="modern-details-container">
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb-section">
+            <a href="@Url.Action("Index")" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Events</span>
+            </a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="details-wrapper">
+            <!-- Hero Card -->
+            <div class="details-hero">
+                <div class="hero-content">
+                    <div class="category-badge-large">
+                        <i class="fas fa-bookmark"></i>
+                        @Model.Category
+                    </div>
+                    <h1 class="event-title-large">@Model.Title</h1>
+                    <div class="event-quick-info">
+                        <div class="quick-info-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>@Model.Date.ToString("MMMM dd, yyyy")</span>
+                        </div>
+                        <div class="quick-info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>@Model.Date.ToString("h:mm tt")</span>
+                        </div>
+                        <div class="quick-info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>@Model.Location</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-price-card">
+                    @if (Model.Price == 0)
+                    {
+                        <div class="price-label">Admission</div>
+                        <div class="price-value free">FREE</div>
+                        <div class="price-subtext">No ticket required</div>
+                    }
+                    else
+                    {
+                        <div class="price-label">Ticket Price</div>
+                        <div class="price-value">@Model.Price.ToString("C")</div>
+                        <div class="price-subtext">Per person</div>
+                    }
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="details-grid">
+                <!-- Description Section -->
+                <div class="description-card">
+                    <div class="card-section-header">
+                        <i class="fas fa-align-left"></i>
+                        <h3>About This Event</h3>
+                    </div>
+                    <div class="description-content">
+                        <p>@Model.Description</p>
+                    </div>
+                </div>
+
+                <!-- Event Information Card -->
+                <div class="info-sidebar">
+                    <div class="info-card">
+                        <div class="card-section-header">
+                            <i class="fas fa-info-circle"></i>
+                            <h3>Event Information</h3>
+                        </div>
+                        <div class="info-list">
+                            <div class="info-list-item">
+                                <div class="info-icon">
+                                    <img src="~/images/calender-icon.png" alt="Date" />
+                                </div>
+                                <div class="info-content">
+                                    <div class="info-label">Date</div>
+                                    <div class="info-value">@Model.Date.ToString("dddd, MMMM dd, yyyy")</div>
+                                </div>
+                            </div>
+
+                            <div class="info-list-item">
+                                <div class="info-icon">
+                                    <img src="~/images/clock-icon.png" alt="Time" />
+                                </div>
+                                <div class="info-content">
+                                    <div class="info-label">Time</div>
+                                    <div class="info-value">@Model.Date.ToString("h:mm tt")</div>
+                                </div>
+                            </div>
+
+                            <div class="info-list-item">
+                                <div class="info-icon">
+                                    <img src="~/images/location-icon.png" alt="Location" />
+                                </div>
+                                <div class="info-content">
+                                    <div class="info-label">Location</div>
+                                    <div class="info-value">@Model.Location</div>
+                                </div>
+                            </div>
+
+                            <div class="info-list-item">
+                                <div class="info-icon">
+                                    <img src="~/images/category-icon.png" alt="Category" />
+                                </div>
+                                <div class="info-content">
+                                    <div class="info-label">Category</div>
+                                    <div class="info-value">@Model.Category</div>
+                                </div>
+                            </div>
+
+                            <div class="info-list-item">
+                                <div class="info-icon">
+                                    <img src="~/images/ticket-icon.png" alt="Admission" />
+                                </div>
+                                <div class="info-content">
+                                    <div class="info-label">Admission</div>
+                                    <div class="info-value">
+                                        @if (Model.Price == 0)
+                                        {
+                                            <span class="price-badge free">Free Entry</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="price-badge paid">@Model.Price.ToString("C")</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Card -->
+                    <div class="action-card">
+                        <button class="btn-action-primary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Add to Calendar
+                        </button>
+                        <button class="btn-action-secondary">
+                            <i class="fas fa-share-alt"></i>
+                            Share Event
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="details-footer">
+                <div class="footer-info">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>Event ID: <strong>@Model.Id</strong></span>
+                </div>
+                <a href="@Url.Action("Index")" class="btn-view-all">
+                    <i class="fas fa-th-large"></i>
+                    View All Events
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --primary-color: #6366f1;
+        --primary-dark: #4f46e5;
+        --primary-light: #818cf8;
+        --secondary-color: #8b5cf6;
+        --accent-color: #ec4899;
+        --success-color: #10b981;
+        --warning-color: #f59e0b;
+        --bg-color: #f8fafc;
+        --card-bg: #ffffff;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --border-color: #e2e8f0;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+        --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .modern-details-container {
+        background: var(--bg-color);
+        min-height: 100vh;
+        padding: 2rem 0 4rem;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb-section {
+        margin-bottom: 2rem;
+    }
+
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+    }
+
+        .back-button:hover {
+            color: var(--primary-color);
+            background: white;
+            box-shadow: var(--shadow-sm);
+            transform: translateX(-3px);
+        }
+
+        .back-button i {
+            font-size: 0.875rem;
+        }
+
+    /* Details Wrapper */
+    .details-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Hero Section */
+    .details-hero {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        border-radius: 1.5rem;
+        padding: 3rem;
+        margin-bottom: 2rem;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .details-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+
+    .hero-content {
+        flex: 1;
+        position: relative;
+        z-index: 1;
+    }
+
+    .category-badge-large {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .event-title-large {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .event-quick-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .quick-info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+    }
+
+        .quick-info-item i {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+    .hero-price-card {
+        background: white;
+        color: var(--text-primary);
+        padding: 2rem;
+        border-radius: 1rem;
+        text-align: center;
+        min-width: 200px;
+        box-shadow: var(--shadow-xl);
+        position: relative;
+        z-index: 1;
+    }
+
+    .price-label {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+    }
+
+    .price-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+    }
+
+        .price-value.free {
+            color: var(--success-color);
+        }
+
+    .price-subtext {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+    }
+
+    /* Details Grid */
+    .details-grid {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Description Card */
+    .description-card {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    .card-section-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border-color);
+    }
+
+        .card-section-header i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .card-section-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+    .description-content {
+        line-height: 1.8;
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+    }
+
+        .description-content p {
+            margin: 0;
+        }
+
+    /* Info Sidebar */
+    .info-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .info-card {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    .info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .info-list-item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .info-icon {
+        width: 40px;
+        height: 40px;
+        background: #f1f5f9;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        font-size: 1.125rem;
+        flex-shrink: 0;
+    }
+
+        .info-icon img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+    .info-content {
+        flex: 1;
+    }
+
+    .info-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+        font-size: 1rem;
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+
+    .price-badge {
+        display: inline-block;
+        padding: 0.375rem 0.875rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+        .price-badge.free {
+            background: #d1fae5;
+            color: var(--success-color);
+        }
+
+        .price-badge.paid {
+            background: #dbeafe;
+            color: var(--primary-color);
+        }
+
+    /* Action Card */
+    .action-card {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    .btn-action-primary,
+    .btn-action-secondary {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+
+    .btn-action-primary {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        color: white;
+        box-shadow: var(--shadow-md);
+    }
+
+        .btn-action-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+    .btn-action-secondary {
+        background: white;
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
+    }
+
+        .btn-action-secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: var(--bg-color);
+        }
+
+    /* Footer */
+    .details-footer {
+        background: white;
+        border-radius: 1rem;
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow-md);
+    }
+
+    .footer-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+    }
+
+        .footer-info i {
+            color: var(--primary-color);
+        }
+
+    .btn-view-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        box-shadow: var(--shadow-md);
+    }
+
+        .btn-view-all:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: white;
+        }
+
+    /* Responsive Design */
+    @@media (max-width: 992px) {
+        .details-grid
+
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .info-sidebar {
+        order: -1;
+    }
+
+    }
+
+    @@media (max-width: 768px) {
+        .modern-details-container
+
+    {
+        padding: 1rem 0 2rem;
+    }
+
+    .details-hero {
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+    }
+
+    .hero-price-card {
+        width: 100%;
+    }
+
+    .event-title-large {
+        font-size: 2rem;
+    }
+
+    .event-quick-info {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .description-card,
+    .info-card,
+    .action-card {
+        padding: 1.5rem;
+    }
+
+    .details-footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .btn-view-all {
+        width: 100%;
+        justify-content: center;
+    }
+
+    }
+
+    @@media (max-width: 576px) {
+        .event-title-large
+
+    {
+        font-size: 1.75rem;
+    }
+
+    .price-value {
+        font-size: 2rem;
+    }
+
+    }
+</style>
